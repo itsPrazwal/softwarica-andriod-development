@@ -1,8 +1,6 @@
 const express = require('express');
-// const bodyparser = require('body-parser')
 const app = express();
 const cors = require("cors");
-const mongoose = require('mongoose');
 app.use(express.static(__dirname + '/userImages'))
 app.use(cors());
 app.use(express.urlencoded({extended:true}))
@@ -14,18 +12,10 @@ const patientRouter = require('./routers/userRouter');
 const doctorRouter = require('./routers/companyVehicleRouter');
 const appointmentRouter = require('./routers/appointmentRouter')
 const staffRouter = require('./routers/staffRouter')
-const conversationRouter = require("./routers/conversationsRouter")
-const messageRouter = require("./routers/messagesRouter")
-const adminRouter = require("./routers/adminRouter")
 app.use(patientRouter);
 app.use(doctorRouter);
 app.use(appointmentRouter);
 app.use(staffRouter);
-app.use(conversationRouter);
-app.use(messageRouter);
-app.use(adminRouter);
-
-
 
 const io = require("socket.io")(8900, {
     pingTimeout : 60000,
